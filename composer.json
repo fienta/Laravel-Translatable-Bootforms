@@ -1,5 +1,5 @@
 {
-    "name": "propaganistas/laravel-translatable-bootforms",
+    "name": "baklysystems/laravel-translatable-bootforms",
     "description": "Empowers adamwathan/bootforms with dimsav/laravel-translatable.",
     "keywords": ["laravel", "bootforms", "translatable", "i18n", "form"],
     "license": "MIT",
@@ -7,7 +7,11 @@
         {
             "name": "Propaganistas",
             "email": "Propaganistas@users.noreply.github.com"
-        }
+        },
+	{
+	    "name": "BaklySystems",
+	    "email": "elbakly@gmail.com"
+	} 		
     ],
     "require": {
         "php": ">=5.5.9",

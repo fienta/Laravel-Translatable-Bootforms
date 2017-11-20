@@ -313,7 +313,7 @@ class TranslatableBootForm
                 $this->arguments($originalArguments);
                 $this->methods($originalMethods);
                 
-                $name = str_contains($originalArguments['name'], '%locale') ? $originalArguments['name'] : $originalArguments['name']['%locale'];
+                $name = str_contains($originalArguments['name'], '%locale') ? $originalArguments['name'] : $originalArguments['name'].'[%locale]';
                 $this->overwriteArgument('name', str_replace('%locale', $locale, $name));
                 
                 if ($this->translatableIndicator()) {
