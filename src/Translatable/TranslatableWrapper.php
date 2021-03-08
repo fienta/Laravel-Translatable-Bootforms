@@ -1,4 +1,4 @@
-<?php namespace Propaganistas\LaravelTranslatableBootForms\Translatable;
+<?php namespace TypiCMS\LaravelTranslatableBootForms\Translatable;
 
 use Dimsav\Translatable\Translatable;
 
