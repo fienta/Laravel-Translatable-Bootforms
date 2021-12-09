@@ -1,6 +1,6 @@
 <?php namespace TypiCMS\LaravelTranslatableBootForms\Form;
 
-use AdamWathan\Form\FormBuilder as _FormBuilder;
+use Galahad\Forms\FormBuilder as _FormBuilder;
 
 class FormBuilder extends _FormBuilder
 {
@@ -32,11 +32,12 @@ class FormBuilder extends _FormBuilder
     protected function getBoundValue($name, $default)
     {
         $inputName = preg_split('/[\[\]]+/', $name, - 1, PREG_SPLIT_NO_EMPTY);
-        if (count($inputName) == 2 && in_array($inputName[1], $this->locales)) {
-            list($name, $lang) = $inputName;
-	    $value = isset($this->boundData->data()->{$name})
-            	? $this->boundData->data()->getTranslation($name,$lang)
-            	: '';
+        if (count($inputName) == 2 && in_array($inputName[0], $this->locales)) {
+            list($lang, $name) = $inputName;
+            $value = isset($this->boundData->data()->translate($lang)->{$name})
+                ? $this->boundData->data()->translate($lang)->{$name}
+                : '';
+
             return $value;
         }
 

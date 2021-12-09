@@ -1,12 +1,12 @@
-<?php namespace Propaganistas\LaravelTranslatableBootForms\Tests;
+<?php namespace TypiCMS\LaravelTranslatableBootForms\Tests;
 
-use AdamWathan\BootForms\BootFormsServiceProvider;
-use AdamWathan\BootForms\Facades\BootForm;
+use Galahad\BootForms\BootFormsServiceProvider;
+use Galahad\BootForms\Facades\BootForm;
 use Illuminate\Database\Capsule\Manager as DB;
 use Orchestra\Testbench\TestCase;
-use Propaganistas\LaravelTranslatableBootForms\Facades\TranslatableBootForm;
-use Propaganistas\LaravelTranslatableBootForms\Tests\Models\Model;
-use Propaganistas\LaravelTranslatableBootForms\TranslatableBootFormsServiceProvider;
+use TypiCMS\LaravelTranslatableBootForms\Facades\TranslatableBootForm;
+use TypiCMS\LaravelTranslatableBootForms\Tests\Models\Model;
+use TypiCMS\LaravelTranslatableBootForms\TranslatableBootFormsServiceProvider;
 
 class TestTranslatableBootForms extends TestCase
 {
@@ -308,7 +308,7 @@ class TestTranslatableBootForms extends TestCase
         $result = $this->form->text('Input', 'input')->data('test', 'ok')->labelClass('newClass')->required()->renderLocale(['en','nl']);
         $this->assertEquals($expected, $result);
     }
-    
+
     public function testRenderTranslatableInputWithCustomNameAttribute()
     {
         $this->form->open()->render();

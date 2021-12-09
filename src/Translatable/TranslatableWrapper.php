@@ -1,21 +1,19 @@
 <?php namespace TypiCMS\LaravelTranslatableBootForms\Translatable;
 
-use Dimsav\Translatable\Translatable;
+use Astrotomic\Translatable\Translatable;
 
 class TranslatableWrapper {
 
-	use Translatable {
-		Translatable::getLocales as _getLocales;
-	}
+	use Translatable;
 
 	/**
 	 * @return array
 	 *
-	 * @throws \Dimsav\Translatable\Exception\LocalesNotDefinedException
+	 * @throws \Astrotomic\Translatable\Exception\LocalesNotDefinedException
 	 */
 	public function getLocales()
 	{
-		return $this->_getLocales();
+		return $this->getLocalesHelper()->all();
 	}
 
 }

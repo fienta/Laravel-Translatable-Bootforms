@@ -11,3 +11,4 @@ composer.lock
 .idea/vcs.xml
 .idea/workspace.xml
 .idea/Laravel-FakeId.iml
+.vscode

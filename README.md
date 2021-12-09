@@ -7,7 +7,7 @@
 [![Total Downloads](https://poser.pugx.org/propaganistas/laravel-translatable-bootforms/downloads)](https://packagist.org/packages/propaganistas/laravel-translatable-bootforms)
 [![License](https://poser.pugx.org/propaganistas/laravel-translatable-bootforms/license)](https://packagist.org/packages/propaganistas/laravel-translatable-bootforms)
 
-Make [BootForms](https://github.com/adamwathan/bootforms) work flawlessly with [Laravel Translatable](https://github.com/dimsav/laravel-translatable)!
+Make [BootForms](https://github.com/adamwathan/bootforms) work flawlessly with [Laravel Translatable](https://github.com/astrotomic/laravel-translatable)!
 
 By importing this package, generating translatable forms using BootForms is a breeze.
 
@@ -16,17 +16,17 @@ By importing this package, generating translatable forms using BootForms is a br
 1. Run the Composer require command to install the package
 
     ```bash
-    composer require propaganistas/laravel-translatable-bootforms
+    composer require fienta/laravel-translatable-bootforms
     ```
 
 2. In your app config, add the Service Provider in the `$providers` array **after** `BootFormsServiceProvider` and `TranslatableServiceProvider`
 
     ```php
     'providers' => [
-        AdamWathan\BootForms\BootFormsServiceProvider::class,
-        Dimsav\Translatable\TranslatableServiceProvider::class,
+        Galahad\BootForms\BootFormsServiceProvider::class,
+        Astrotomic\Translatable\TranslatableServiceProvider::class,
         ...
-        Propaganistas\LaravelTranslatableBootForms\TranslatableBootFormsServiceProvider::class,
+        TypiCMS\LaravelTranslatableBootForms\TranslatableBootFormsServiceProvider::class,
     ],
     ```
 3. In your app config, add the Facade to the `$aliases` array
@@ -41,7 +41,7 @@ By importing this package, generating translatable forms using BootForms is a br
 4. Publish the configuration file
 
     ```bash
-    php artisan vendor:publish --provider="Propaganistas\LaravelTranslatableBootForms\TranslatableBootFormsServiceProvider" --tag="config"
+    php artisan vendor:publish --provider="TypiCMS\LaravelTranslatableBootForms\TranslatableBootFormsServiceProvider" --tag="config"
     ```
 
 ### Usage

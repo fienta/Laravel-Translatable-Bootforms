@@ -38,11 +38,11 @@ class TranslatableBootFormsServiceProvider extends ServiceProvider
 
         // Override BootForm's form builder in order to get model binding
         // between BootForm & TranslatableBootForm working.
-        $this->app->singleton('adamwathan.form', function ($app) {
+        $this->app->singleton('galahad.forms', function ($app) {
             $formBuilder = new Form\FormBuilder();
             $formBuilder->setLocales($this->getLocales());
-            $formBuilder->setErrorStore($app['adamwathan.form.errorstore']);
-            $formBuilder->setOldInputProvider($app['adamwathan.form.oldinput']);
+            $formBuilder->setErrorStore($app['galahad.forms.errorstore']);
+            $formBuilder->setOldInputProvider($app['galahad.forms.oldinput']);
 
             $token = version_compare(Application::VERSION, '5.4', '<')
                 ? $app['session.store']->getToken()
@@ -55,7 +55,7 @@ class TranslatableBootFormsServiceProvider extends ServiceProvider
 
         // Define TranslatableBootForm.
         $this->app->singleton('translatable-bootform', function ($app) {
-            $form = new TranslatableBootForm($app['bootform']);
+            $form = new TranslatableBootForm($app['galahad.bootforms']);
             $form->locales($this->getLocales());
 
             return $form;
@@ -70,7 +70,7 @@ class TranslatableBootFormsServiceProvider extends ServiceProvider
     public function provides()
     {
         return [
-            'adamwathan.form',
+            'galahad.forms',
             'translatable-bootform',
         ];
     }

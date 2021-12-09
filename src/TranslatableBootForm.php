@@ -1,12 +1,17 @@
 <?php namespace TypiCMS\LaravelTranslatableBootForms;
 
+use Str;
+use Arr;
+
+use Closure;
+
 class TranslatableBootForm
 {
 
     /**
      * BootForm implementation.
      *
-     * @var \AdamWathan\BootForms\BootForm
+     * @var \Galahad\BootForms\BootForm
      */
     protected $form;
 
@@ -312,10 +317,10 @@ class TranslatableBootForm
             foreach ($locales as $locale) {
                 $this->arguments($originalArguments);
                 $this->methods($originalMethods);
-                
-                $name = str_contains($originalArguments['name'], '%locale') ? $originalArguments['name'] : $originalArguments['name'].'[%locale]';
+
+                $name = str_contains($originalArguments['name'], '%locale') ? $originalArguments['name'] : '%locale[' . $originalArguments['name'] . ']';
                 $this->overwriteArgument('name', str_replace('%locale', $locale, $name));
-                
+
                 if ($this->translatableIndicator()) {
                     $this->setTranslatableLabelIndicator($locale);
                 }
@@ -365,7 +370,7 @@ class TranslatableBootForm
                 $methodParameters = $method['parameters'];
 
                 // Check if method is locale-specific.
-                if (ends_with($methodName, 'ForLocale')) {
+                if (Str::endsWith($methodName, 'ForLocale')) {
                     $methodName = strstr($methodName, 'ForLocale', true);
                     $locales = array_shift($methodParameters);
                     $locales = is_array($locales) ? $locales : [$locales];
@@ -377,7 +382,14 @@ class TranslatableBootForm
 
                 // Call method.
                 if (!empty($methodParameters)) {
-                    call_user_func_array([$element, $methodName], $this->replacePlaceholdersRecursively($methodParameters, $currentLocale));
+                    // Convert closures to values.
+                    $methodParameters = array_map(function($parameter) use ($currentLocale) {
+                        return ($parameter instanceof Closure) ? $parameter($currentLocale) : $parameter;
+                    }, $methodParameters);
+
+                    $methodParameters = $this->replacePlaceholdersRecursively($methodParameters, $currentLocale);
+
+                    call_user_func_array([$element, $methodName], $methodParameters);
                 } else {
                     $element->{$methodName}();
                 }
@@ -402,11 +414,11 @@ class TranslatableBootForm
                 $this->replacePlaceholdersRecursively($param, $currentLocale);
             }
         }
-        
+
         $replacements = ['locale' => $currentLocale];
-        
-        if ($name = array_get($this->arguments(), 'name')) {
-            array_set($replacements, 'name', $name);
+
+        if ($name = Arr::get($this->arguments(), 'name')) {
+            Arr::set($replacements, 'name', $name);
         }
 
         return str_replace(array_keys($replacements), array_values($replacements), $parameter);
