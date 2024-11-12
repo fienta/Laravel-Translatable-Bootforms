@@ -10,9 +10,9 @@
 	}
     ],
     "require": {
-        "php": ">=5.5.9",
-        "illuminate/support": ">=5.5",
-        "galahad/bootforms": "^1.2.0",
+        "php": ">=5.5.9|>=8.2.0",
+        "illuminate/support": ">=5.5|>=11.0",
+        "fienta/bootforms": "^1.2.0|^1.7.2",
         "astrotomic/laravel-translatable": ">=8.0"
     },
     "require-dev": {
